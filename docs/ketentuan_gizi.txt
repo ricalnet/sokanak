@@ -1,0 +1,20 @@
+BB/U > Sangat Kurang
+BB/U > Kurang
+BB/U > Berat Badan Normal
+BB/U > Risiko Lebih
+TB/U > Sangat Pendek
+TB/U > Pendek
+TB/U > Normal
+TB/U > Tinggi
+BB/TB > Gizi Buruk
+BB/TB > Gizi Kurang
+BB/TB > Normal
+BB/TB > Risiko Gizi Lebih
+BB/TB > Gizi Lebih 
+BB/TB > Obesitas
+STUNTING
+WASTING
+WASTING dan STUNTING
+KOMPOSIT (WASTING, STUNTING, dan UNDERWEIGHT)
+UNDERWEIGHT
+UNDERWEIGHT NON WASTING

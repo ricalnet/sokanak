@@ -1,0 +1,109 @@
+```nginx
+server {
+    listen 80;
+    listen [::]:80;
+    
+    # Cloudflare Tunnel akan menghandle HTTPS
+    
+    server_name localhost;
+    root /var/www/html;
+    
+    # Security Headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    
+    # Restrict access to local only
+    allow 127.0.0.1;
+    allow ::1;
+    deny all;
+    
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # PHP Security
+    location ~ \.php$ {
+        # Restrict to local connections only
+        allow 127.0.0.1;
+        allow ::1;
+        deny all;
+        
+        # Blokir akses ke file tersembunyi dan sensitif
+        location ~ /\. {
+            deny all;
+            return 404;
+        }
+        
+        # Status page untuk monitoring (local only)
+        location ~ ^/(fpm-status|fpm-ping|phpinfo) {
+            access_log off;
+            allow 127.0.0.1;
+            allow ::1;
+            deny all;
+            
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+        }
+        
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+        
+        # Security parameters
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        
+        # Hide PHP version
+        fastcgi_hide_header X-Powered-By;
+        
+        # Limit body size
+        client_max_body_size 10M;
+        
+        # Timeout settings
+        fastcgi_read_timeout 300;
+    }
+
+    # Blokir akses ke file dan direktori sensitif
+    location ~ /\.(ht|git|svn|env) {
+        deny all;
+        return 404;
+    }
+    
+    location ~ /\.(?!well-known) {
+        deny all;
+        return 404;
+    }
+    
+    # Blokir file konfigurasi dan backup
+    location ~* \.(log|sql|conf|ini|bak|swp|old|tmp)$ {
+        deny all;
+        return 404;
+    }
+    
+    # Proteksi upload dan cache directory
+    location ~* /(uploads|cache|temp)/.*\.(php|php5|php7|phtml)$ {
+        deny all;
+        return 404;
+    }
+    
+    # Disable TRACE and TRACK methods
+    if ($request_method ~ ^(TRACE|TRACK|OPTIONS)$ ) {
+        return 405;
+    }
+    
+    # Rate limiting (optional untuk localhost)
+    limit_req zone=local burst=20 nodelay;
+    
+    # Basic auth untuk admin area (optional)
+    # location ~ ^/admin {
+    #     auth_basic "Restricted Area";
+    #     auth_basic_user_file /etc/nginx/.htpasswd;
+    # }
+}
+
+# Rate limiting untuk local
+limit_req_zone $binary_remote_addr zone=local:10m rate=30r/s;
+```

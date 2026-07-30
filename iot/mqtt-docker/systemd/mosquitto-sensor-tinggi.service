@@ -1,0 +1,16 @@
+[Unit]
+Description=Mosquitto MQTT Subscriber untuk iot/sensor_tinggi
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=your_username
+ExecStart=/usr/bin/mosquitto_sub -h ip/domain -t "iot/sensor_tinggi" -u ultrasonic -P rahasia123 -v
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/mosquitto-sensor-tinggi.log
+StandardError=append:/var/log/mosquitto-sensor-tinggi-error.log
+
+[Install]
+WantedBy=multi-user.target

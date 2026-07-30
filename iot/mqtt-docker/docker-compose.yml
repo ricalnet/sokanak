@@ -1,0 +1,13 @@
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto-local
+    restart: unless-stopped
+    ports:
+      - "1883:1883" # MQTT standard port
+      - "9001:9001" # MQTT websocket port
+      # - "8888:8080" # Port untuk monitoring web (opsional)
+    volumes:
+      - ./config:/mosquitto/config:rw
+      - ./data:/mosquitto/data:rw
+      - ./log:/mosquitto/log:rw
