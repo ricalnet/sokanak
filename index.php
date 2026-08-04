@@ -430,6 +430,54 @@ include 'includes/header.php';
         text-decoration: none;
     }
 
+    .btn-kalkulator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.875rem 2.25rem;
+        background: linear-gradient(135deg, #e2001a 0%, #b30015 100%);
+        color: white;
+        border-radius: 1rem;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 16px rgba(226, 0, 26, 0.25);
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-kalkulator:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 28px rgba(226, 0, 26, 0.35);
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-kalkulator-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.875rem 2.25rem;
+        background: transparent;
+        color: #e2001a;
+        border-radius: 1rem;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        border: 2px solid #e2001a;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn-kalkulator-outline:hover {
+        background: #e2001a;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 16px rgba(226, 0, 26, 0.15);
+        text-decoration: none;
+    }
+
     .partners-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -672,6 +720,94 @@ include 'includes/header.php';
     .grid {
         overflow: hidden;
     }
+
+    /* Kalkulator section image placeholder styling */
+    .kalkulator-image-wrapper {
+        position: relative;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
+    }
+
+    .kalkulator-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .kalkulator-image-wrapper:hover img {
+        transform: scale(1.02);
+    }
+
+    .kalkulator-image-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem 1.5rem 1.5rem;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        pointer-events: none;
+    }
+
+    .kalkulator-image-overlay span {
+        color: white;
+        font-size: 0.8rem;
+        font-weight: 500;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(4px);
+        padding: 0.25rem 1rem;
+        border-radius: 9999px;
+        display: inline-block;
+    }
+
+    .feature-list-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .feature-list-item:last-child {
+        border-bottom: none;
+    }
+
+    .feature-list-item .icon {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(226, 0, 26, 0.08);
+        color: #e2001a;
+        font-size: 0.75rem;
+        margin-top: 0.125rem;
+    }
+
+    .feature-list-item .text {
+        font-size: 0.9rem;
+        color: #334155;
+        line-height: 1.6;
+    }
+
+    .feature-list-item .text strong {
+        color: #0f172a;
+        font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+        .kalkulator-image-wrapper {
+            border-radius: 1rem;
+            max-height: 280px;
+        }
+
+        .feature-list-item .text {
+            font-size: 0.85rem;
+        }
+    }
 </style>
 
 <section class="hero-container">
@@ -825,6 +961,93 @@ include 'includes/header.php';
     </div>
 </section>
 
+<!-- ===== SECTION KALKULATOR GIZI ===== -->
+<section class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-red-50 via-white to-blue-50" id="kalkulator">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 md:gap-14 items-center">
+            <!-- KOLOM KIRI: Gambar -->
+            <div data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+                <div class="kalkulator-image-wrapper">
+                    <img src="assets/img/hero/image-2.jpg" alt="Kalkulator Status Gizi Anak - Sok!Anak"
+                        class="w-full h-72 sm:h-80 md:h-96 object-cover"
+                        onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E%3Crect fill=%22%23f1f5f9%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%22400%22 y=%22300%22 font-family=%22Inter%22 font-size=%2236%22 fill=%22%2394a3b8%22 text-anchor=%22middle%22 dominant-baseline=%22central%22%3E🧒 Kalkulator Gizi%3C/text%3E%3C/svg%3E';">
+                    <div class="kalkulator-image-overlay">
+                        <span><i class="fas fa-calculator mr-2"></i> Kalkulator Status Gizi</span>
+                    </div>
+                </div>
+
+                <!-- Statistik kecil -->
+                <div class="grid grid-cols-3 gap-3 mt-4">
+                    <div class="bg-white rounded-xl p-3 text-center shadow-sm border border-gray-100" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <div class="text-2xl font-bold text-red-600">WHO</div>
+                        <div class="text-xs text-gray-500">Standar</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-3 text-center shadow-sm border border-gray-100" data-aos="fade-up"
+                        data-aos-delay="250">
+                        <div class="text-2xl font-bold text-blue-600">0-60</div>
+                        <div class="text-xs text-gray-500">Bulan</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-3 text-center shadow-sm border border-gray-100" data-aos="fade-up"
+                        data-aos-delay="300">
+                        <div class="text-2xl font-bold text-green-600">4</div>
+                        <div class="text-xs text-gray-500">Indikator</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KOLOM KANAN: Konten -->
+            <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                <span class="section-badge">
+                    <i class="fas fa-calculator"></i> Layanan Publik
+                </span>
+
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mt-3 leading-tight">
+                    Kalkulator <span class="text-red-600">Status Gizi</span> Anak
+                </h2>
+
+                <p class="text-base sm:text-lg text-gray-600 mt-3 leading-relaxed">
+                    Evaluasi status gizi anak Anda secara cepat dan akurat menggunakan standar WHO.
+                    Cukup masukkan data usia, jenis kelamin, berat badan, dan tinggi badan.
+                </p>
+
+                <div class="mt-5 space-y-1">
+                    <div class="feature-list-item">
+                        <div class="icon"><i class="fas fa-check"></i></div>
+                        <div class="text"><strong>BB/U</strong> – Berat Badan berdasarkan Usia</div>
+                    </div>
+                    <div class="feature-list-item">
+                        <div class="icon"><i class="fas fa-check"></i></div>
+                        <div class="text"><strong>TB/U</strong> – Tinggi Badan berdasarkan Usia</div>
+                    </div>
+                    <div class="feature-list-item">
+                        <div class="icon"><i class="fas fa-check"></i></div>
+                        <div class="text"><strong>BB/TB</strong> – Berat Badan berdasarkan Tinggi Badan</div>
+                    </div>
+                    <div class="feature-list-item">
+                        <div class="icon"><i class="fas fa-check"></i></div>
+                        <div class="text"><strong>IMT/U</strong> – Indeks Massa Tubuh berdasarkan Usia</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4 mt-7">
+                    <a href="kalkulator.php" class="btn-kalkulator">
+                        <i class="fas fa-arrow-right"></i> Buka Kalkulator
+                    </a>
+                    <a href="#services" class="btn-kalkulator-outline">
+                        <i class="fas fa-info-circle"></i> Pelajari Lainnya
+                    </a>
+                </div>
+
+                <p class="text-xs text-gray-400 mt-4 flex items-center gap-2">
+                    <i class="fas fa-lock text-gray-300"></i>
+                    Gratis untuk publik • Data tidak disimpan • Berbasis WHO LMS
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="py-12 sm:py-16 md:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10 md:mb-14">
@@ -882,102 +1105,6 @@ include 'includes/header.php';
         </div>
     </div>
 </section>
-
-<!-- <section class="py-12 sm:py-16 md:py-20 bg-gray-50" id="publications">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10 md:mb-14">
-            <span class="section-badge" data-aos="fade-up">
-                <i class="fas fa-newspaper"></i> Publikasi
-            </span>
-            <h2 class="section-title mt-3" data-aos="fade-up" data-aos-delay="100">
-                Press Release & <span>Publikasi</span>
-            </h2>
-            <p class="section-subtitle mt-3" data-aos="fade-up" data-aos-delay="200">
-                Berita dan publikasi terkait pengembangan AIoT Sok!Anak
-            </p>
-        </div>
-
-        <div class="mb-8" data-aos="fade-up" data-aos-delay="300">
-            <div class="press-card">
-                <img src="https://assets.kompasiana.com/items/album/2026/02/18/screenshot-from-2026-02-18-18-32-14-6995bcd5ed64151c285165d4.png?t=o&v=770"
-                    alt="Press Release AIoT Sok!Anak" class="press-image"
-                    onerror="this.onerror=null; this.src='assets/img/hero/image-1.jpg';">
-                <div class="press-body">
-                    <span class="press-tag press-tag-press">
-                        <i class="fas fa-bullhorn mr-1"></i> Press Release
-                    </span>
-                    <h3 class="press-title">
-                        <a href="https://www.kompasiana.com/ceisya57737/699350d4ed64153b9508b723/sok-anak-ketika-posyandu-di-pelosok-bandung-berubah-jadi-klinik-digital-tanpa-internet?page=2&page_images=4"
-                            target="_blank">
-                            Sok!Anak: Ketika Posyandu di Pelosok Bandung Berubah Jadi Klinik Digital Tanpa Internet
-                        </a>
-                    </h3>
-                    <p class="press-excerpt">
-                        Sok!Anak adalah sistem observasi kesehatan anak berbasis IoT dan AI yang dioperasikan secara
-                        lokal.
-                        Dikembangkan oleh mahasiswa D3 Teknologi Telekomunikasi Telkom University, solusi ini bertujuan
-                        untuk meningkatkan akurasi data dan efektivitas intervensi gizi di Posyandu.
-                    </p>
-                    <div class="press-meta">
-                        <span><i class="fas fa-calendar-alt"></i> 17 Februari 2026</span>
-                        <span><i class="fas fa-user"></i> Tim Innovillage</span>
-                        <span><i class="fas fa-tag"></i> sustainability</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6">
-            <div class="press-card" data-aos="fade-up" data-aos-delay="400">
-                <img src="https://siaran-berita.com/wp-content/uploads/2026/02/Screenshot-4-750x536.jpg"
-                    alt="Siaran Berita" class="press-image" onerror="this.onerror=null; this.src='assets/img/hero/image-1.jpg';">
-                <div class="press-body">
-                    <span class="press-tag press-tag-journal">
-                        <i class="fas fa-book mr-1"></i> Siaran Berita
-                    </span>
-                    <h3 class="press-title">
-                        <a href="https://siaran-berita.com/sokanak-posyandu-jadi-klinik-digital-tanpa-internet-di-kaki-pegunungan-bandung/"
-                            target="_blank">
-                            Sok!Anak: Posyandu Jadi Klinik Digital Tanpa Internet di Kaki Pegunungan Bandung
-                        </a>
-                    </h3>
-                    <p class="press-excerpt">
-                        Di kaki Gunung Bandung, Sok!Anak menjadi contoh inovasi layanan kesehatan masyarakat yang
-                        cerdas, akurat, dan berbasis komunitas, meskipun tanpa akses internet.
-                    </p>
-                    <div class="press-meta">
-                        <span><i class="fas fa-calendar-alt"></i> 17 Februari 2026</span>
-                        <span><i class="fas fa-user"></i> Tim Innovillage</span>
-                        <span><i class="fas fa-tag"></i> Pendidikan</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="press-card" data-aos="fade-up" data-aos-delay="500">
-                <img src="assets/img/haki-certificate.jpg" alt="Sertifikat HAKI" class="press-image"
-                    onerror="this.onerror=null; this.src='assets/img/hero/image-1.jpg';">
-                <div class="press-body">
-                    <span class="press-tag press-tag-haki">
-                        <i class="fas fa-certificate mr-1"></i> HAKI
-                    </span>
-                    <h3 class="press-title">
-                        <a href="#">Hak Kekayaan Intelektual Sistem AIoT Sok!Anak</a>
-                    </h3>
-                    <p class="press-excerpt">
-                        Sistem AIoT Sok!Anak telah terdaftar dan mendapatkan sertifikat Hak Cipta dari
-                        Direktorat Jenderal Kekayaan Intelektual (DJKI) Kemenkumham RI sebagai perlindungan
-                        hukum atas inovasi teknologi yang dikembangkan.
-                    </p>
-                    <div class="press-meta">
-                        <span><i class="fas fa-calendar-alt"></i> sedang berlangsung</span>
-                        <span><i class="fas fa-file-alt"></i> Pendaftaran</span>
-                        <span><i class="fas fa-check-circle"></i> Tersertifikasi</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
 
 <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700"></div>
@@ -1047,100 +1174,6 @@ include 'includes/header.php';
             </div>
             <div class="partner-logo" data-aos="zoom-in" data-aos-delay="400">
                 <div class="partner-placeholder">+3 Institusi Lainnya</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-red-50 via-white to-blue-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div>
-                <span class="section-badge" data-aos="fade-up">
-                    <i class="fas fa-calculator"></i> Fitur Publik
-                </span>
-                <h2 class="section-title mt-3" data-aos="fade-up" data-aos-delay="100">
-                    Kalkulator <span>Gizi Anak</span>
-                </h2>
-                <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed" data-aos="fade-up"
-                    data-aos-delay="200">
-                    Akses publik untuk menghitung dan mengevaluasi status gizi anak berdasarkan standar WHO.
-                    Dapat digunakan oleh orang tua dan masyarakat umum.
-                </p>
-
-                <div class="space-y-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center gap-3 bg-white/80 p-3 rounded-xl shadow-sm border border-gray-100">
-                        <i class="fas fa-check-circle text-red-600 text-base flex-shrink-0"></i>
-                        <span class="text-sm text-gray-700">Perhitungan berdasarkan standar WHO</span>
-                    </div>
-                    <div class="flex items-center gap-3 bg-white/80 p-3 rounded-xl shadow-sm border border-gray-100">
-                        <i class="fas fa-check-circle text-red-600 text-base flex-shrink-0"></i>
-                        <span class="text-sm text-gray-700">Evaluasi status gizi (stunting, wasting, underweight)</span>
-                    </div>
-                    <div class="flex items-center gap-3 bg-white/80 p-3 rounded-xl shadow-sm border border-gray-100">
-                        <i class="fas fa-check-circle text-red-600 text-base flex-shrink-0"></i>
-                        <span class="text-sm text-gray-700">Gratis dan mudah digunakan</span>
-                    </div>
-                </div>
-
-                <div class="mt-6" data-aos="fade-up" data-aos-delay="400">
-                    <button class="inline-flex items-center gap-2 px-6 py-3 bg-gray-300 text-gray-500 rounded-xl font-semibold 
-                                   cursor-not-allowed text-sm">
-                        <i class="fas fa-clock"></i>
-                        Segera Hadir
-                    </button>
-                    <p class="text-xs text-gray-500 mt-2">
-                        <i class="fas fa-info-circle mr-1"></i> Fitur ini sedang dalam pengujian internal
-                    </p>
-                </div>
-            </div>
-
-            <div class="flex justify-center mt-8 lg:mt-0" data-aos="fade-left" data-aos-duration="1000">
-                <div class="relative w-full max-w-md">
-                    <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100">
-                        <div class="flex items-center justify-between mb-4 sm:mb-6">
-                            <h3 class="text-base sm:text-lg font-bold text-gray-900">Preview Kalkulator</h3>
-                            <span class="text-xs bg-red-100 text-red-600 px-3 py-1 rounded-full">Coming Soon</span>
-                        </div>
-                        <div class="space-y-3 sm:space-y-4 opacity-50">
-                            <div>
-                                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Usia
-                                    (bulan)</label>
-                                <input type="text"
-                                    class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm"
-                                    placeholder="24" disabled>
-                            </div>
-                            <div>
-                                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Jenis
-                                    Kelamin</label>
-                                <div class="flex gap-3">
-                                    <button class="flex-1 px-3 py-2 border rounded-lg bg-gray-50 text-sm"
-                                        disabled>Laki-laki</button>
-                                    <button class="flex-1 px-3 py-2 border rounded-lg bg-gray-50 text-sm"
-                                        disabled>Perempuan</button>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Berat Badan
-                                    (kg)</label>
-                                <input type="text"
-                                    class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm"
-                                    placeholder="12.5" disabled>
-                            </div>
-                            <div>
-                                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Tinggi Badan
-                                    (cm)</label>
-                                <input type="text"
-                                    class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm"
-                                    placeholder="85" disabled>
-                            </div>
-                            <button class="w-full py-2 sm:py-3 bg-gray-200 text-gray-400 rounded-lg font-medium text-sm"
-                                disabled>
-                                <i class="fas fa-calculator mr-2"></i> Hitung Status Gizi
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

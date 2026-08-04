@@ -22,7 +22,9 @@ server {
     index index.php index.html index.htm;
 
     location / {
-        try_files $uri $uri/ =404;
+        rewrite ^/(.*)/$ /$1 permanent;
+        
+        try_files $uri $uri/ /index.php?$query_string;
     }
 
     # PHP Security

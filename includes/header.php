@@ -758,6 +758,10 @@
                                 class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
                                 <i class="fas fa-house-chimney"></i> Beranda
                             </a>
+                            <a href="../kalkulator.php"
+                                class="mobile-nav-item <?php echo basename($_SERVER['PHP_SELF']) == '../kalkulator.php' ? 'active' : ''; ?>">
+                                <i class="fas fa-calculator"></i> Kalkulator
+                            </a>
                             <a href="bantuan.php" role="menuitem"
                                 class="<?php echo basename($_SERVER['PHP_SELF']) == 'bantuan.php' ? 'active' : ''; ?>">
                                 <i class="fas fa-question-circle"></i> Pusat Bantuan
@@ -942,6 +946,10 @@
             <a href="index.php"
                 class="mobile-nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
                 <i class="fas fa-house-chimney"></i> Beranda
+            </a>
+            <a href="../kalkulator.php"
+                class="mobile-nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'bantuan.php' ? 'active' : ''; ?>">
+                <i class="fas fa-question-circle"></i> Kalkulator
             </a>
             <a href="bantuan.php"
                 class="mobile-nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'bantuan.php' ? 'active' : ''; ?>">
