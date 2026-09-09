@@ -1,0 +1,1 @@
+[Panduan Konfigurasi PlatformIO untuk ESP32 dengan Sensor Ultrasonik HC-SR04](https://docs.ricalnet.my.id/posts/panduan-konfigurasi-platformio-untuk-esp32-dengan-sensor=ultrasonik-hc-sr04/)

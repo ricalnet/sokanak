@@ -1,0 +1,16 @@
+[Unit]
+Description=Mosquitto MQTT Subscriber untuk iot/sensor_berat
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=your_username
+ExecStart=/usr/bin/mosquitto_sub -h ip/domain -t "iot/sensor_berat" -u hx711 -P rahasia123 -v
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/mosquitto-sensor-berat.log
+StandardError=append:/var/log/mosquitto-sensor-berat-error.log
+
+[Install]
+WantedBy=multi-user.target

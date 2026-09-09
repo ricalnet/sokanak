@@ -1,0 +1,22 @@
+# Python Virtual Environment
+venv
+
+# Config
+config/database.php
+
+# HX711
+sensors/hx711/.pio
+sensors/hx711/include/*
+sensors/hx711/lib/*
+sensors/hx711/test/*
+
+# ULtrasonic
+sensors/ultrasonic/.pio
+sensors/ultrasonic/include/*
+sensors/ultrasonic/lib/*
+sensors/ultrasonic/test/*
+
+# mqtt-docker
+iot/mqtt-docker/config/pwfile
+iot/mqtt-docker/data/*
+iot/mqtt-docker/log/*
