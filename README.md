@@ -6,22 +6,22 @@ Sok!Anak merupakan platform kesehatan gizi anak berbasis data WHO yang ditujukan
 
 ## Persyaratan Hosting
 
-**Rekomendasi:** Gunakan server fisik (misalnya Raspberry Pi atau server bekas) untuk mencapai kedaulatan digital penuh. Apabila memilih layanan hosting, gunakan Cloud Hosting (VPS) yang berlokasi di Indonesia. Penggunaan platform shared hosting berbasis PHP konvensional tidak disarankan, karena sistem memerlukan akses langsung ke protokol MQTT serta layanan sistem lainnya.
+> [!TIP]
+> Gunakan server fisik (misalnya Raspberry Pi atau server bekas) untuk mencapai kedaulatan digital penuh. Apabila memilih layanan hosting, gunakan Cloud Hosting (VPS) yang berlokasi di Indonesia. Penggunaan platform shared hosting berbasis PHP konvensional tidak disarankan, karena sistem memerlukan akses langsung ke protokol MQTT serta layanan sistem lainnya.
 
 ## Prasyarat Sistem
 
 Sebelum memulai proses instalasi, pastikan prasyarat berikut telah terpenuhi.
 
-### 1. Instalasi Docker Engine
-Docker diperlukan untuk menjalankan layanan MQTT broker dan layanan AI secara mandiri (self-hosted). Jalankan perintah berikut untuk menginstal Docker Engine pada sistem Debian/Ubuntu:
+### 1. Instalasi Podman
 
 ```bash
-wget https://github.com/ricalnet/digital-independence/blob/main/install-docker-engine-on-debian.sh
-chmod +x install-docker-engine-on-debian.sh
-./install-docker-engine-on-debian.sh
+curl -fLO https://git.ricalnet.my.id/rical/digital-independence/raw/branch/main/install-podman-on-debian.sh
+chmod +x install-podman-on-debian.sh
+./install-podman-on-debian.sh
 ```
 
-> Verifikasi dengan menjalankan `docker --version` dan `docker compose version`.
+> Verifikasi dengan menjalankan `podman version` dan `podman-compose version`.
 
 ### 2. Pemeriksaan Konfigurasi Pra-Deployment
 
@@ -41,7 +41,7 @@ Sesuaikan parameter berikut:
 | `desa_list` | Daftar desa/kelurahan sesuai kebutuhan |
 
 #### b. Sinkronisasi Konfigurasi Lainnya
-Parameter `kecamatan_list` dan `desa_list` harus diselaraskan di **semua file berikut**:
+Parameter `kecamatan_list` dan `desa_list` harus diselaraskan di semua file berikut:
 - `config/database.php`
 - `settings.php`
 - `signup.php`
@@ -72,7 +72,8 @@ sudo apt install -y nginx mariadb-server php-fpm php-mysql \
     php-gd php-curl php-common php-imagick php-gmp php-intl php-apcu
 ```
 
-> **Alternatif:** Untuk menggunakan sertifikat self-signed, jalankan script berikut:
+> [!TIP]
+> Untuk menggunakan sertifikat self-signed, jalankan script berikut:
 > ```bash
 > ./install-web-server-and-ssl.sh
 > ```
@@ -95,7 +96,7 @@ sudo apt install -y nginx mariadb-server php-fpm php-mysql \
 
 2. Ganti seluruh isi file dengan konfigurasi dari `docs/nginx-default`
 
-3. Simpan file (Ctrl+O, Enter) dan keluar (Ctrl+X)
+3. Simpan file (Ctrl+X > y > Enter)
 
 4. Uji konfigurasi Nginx:
    ```bash
@@ -115,6 +116,7 @@ Jalankan perintah deployment:
 ./deploy.sh
 ```
 
+> [!NOTE]
 > Pastikan script `deploy.sh` memiliki izin eksekusi:
 > ```bash
 > chmod +x deploy.sh
@@ -124,26 +126,39 @@ Jalankan perintah deployment:
 
 Sok!Anak menyediakan layanan konsultasi AI yang berjalan secara lokal menggunakan Open WebUI. Layanan ini memastikan seluruh data konsultasi tetap berada di server.
 
-### 1. Konfigurasi Environment
-Salin file environment contoh dan sesuaikan konfigurasinya:
+> [!WARNING]
+> Konfigurasi Docker pada repositori ini sudah **usang**. Untuk deployment Open WebUI yang terbaru, silakan merujuk ke [digital-independence wiki](https://git.ricalnet.my.id/rical/digital-independence/wiki/Mulai-Cepat), yang menggunakan Podman. Panduan lengkap tersedia di sana.
+
+Untuk konfigurasi terkini, ikuti langkah-langkah berikut dengan mengacu pada repositori digital-independence:
+
+### 1. Clone Repositori digital-independence
 
 ```bash
-cp ai/.env.example ai/.env
-nano ai/.env
+git clone https://git.ricalnet.my.id/rical/digital-independence ~/digital-independence
+cd ~/digital-independence
+chmod +x install-podman-on-debian.sh
+./install-podman-on-debian.sh
+```
+
+### 2. Konfigurasi Environment
+Salin file environment contoh dan sesuaikan konfigurasinya sesuai panduan di repositori tersebut:
+
+```bash
+dipen env open-webui
 ```
 
 Sesuaikan parameter yang diperlukan.
 
-### 2. Menjalankan Layanan Open WebUI
-Jalankan Docker Compose dari direktori `ai/`:
+### 3. Menjalankan Layanan Open WebUI dengan Podman
+Jalankan dipen:
 
 ```bash
-cd ai
-docker compose up -d
-cd ..
+dipen up open-webui
+sleep 30
+dipen logs open-webui
 ```
 
-### 3. Verifikasi Layanan AI
+### 4. Verifikasi Layanan AI
 Setelah container berjalan, akses antarmuka Open WebUI melalui browser:
 
 ```
@@ -151,6 +166,9 @@ http://localhost:3000
 ```
 
 ## Sinkronisasi Perangkat IoT
+
+> [!TIP]
+> [Deploy MQTT Broker dengan Podman — Panduan Teknis Eclipse Mosquitto](https://docs.ricalnet.my.id/posts/deploy-mqtt-broker-dengan-podman-panduan-teknis-eclipse-mosquitto/) 
 
 Untuk menghubungkan perangkat IoT dengan server, lakukan langkah-langkah berikut:
 
@@ -162,7 +180,7 @@ Sesuaikan baris berikut di file-file terkait:
 | `iot/get_latest_height.php` | `$command = 'mosquitto_sub...'` |
 | `iot/get_latest_weight.php` | `$command = 'mosquitto_sub...'` |
 
-**Contoh konfigurasi lengkap:**
+Contoh konfigurasi lengkap:
 ```php
 $command = 'mosquitto_sub -h 192.168.0.50 -t "iot/sensor_tinggi" -u mqtt_user -P rahasia123 -C 1 -W 3 2>&1';
 ```
@@ -174,8 +192,8 @@ Sebelum melakukan flashing, pastikan konfigurasi pada kode sumber sensor telah d
 #### a. Sesuaikan Konfigurasi Firmware
 Edit file konfigurasi jaringan dan MQTT pada masing-masing sensor:
 
-- **Sensor Berat (Load Cell HX711):** `sensors/hx711/src/main.cpp`
-- **Sensor Tinggi (Ultrasonik):** `sensors/ultrasonic/src/main.cpp`
+- Sensor Berat (Load Cell HX711): `sensors/hx711/src/main.cpp`
+- Sensor Tinggi (Ultrasonik): `sensors/ultrasonic/src/main.cpp`
 
 Parameter yang perlu disesuaikan mencakup SSID WiFi, password WiFi, alamat IP MQTT broker, username, password, dan topic MQTT.
 
@@ -202,10 +220,10 @@ Script `deploy.py` akan secara otomatis melakukan kompilasi dan mengunggah firmw
 
 | Sumber Daya | Deskripsi | Lokasi / Tautan |
 |-------------|-----------|-----------------|
-| **Source Code Sensor (Firmware)** | Kode sumber untuk perangkat keras IoT | `sensors/` |
-| **MQTT Broker (Docker)** | Dokumentasi menjalankan MQTT broker sendiri menggunakan Docker | `iot/mqtt-docker/README.md` |
-| **Open WebUI (AI Self-Hosted)** | Konfigurasi dan environment AI | `ai/.env` |
-| **Pendaftaran Pengguna** | Atur status pendaftaran di file `signup.php`. Set ke `true` untuk membuka pendaftaran, atau `false` untuk menutup pendaftaran. | `signup.php` |
+| Source Code Sensor (Firmware) | Kode sumber untuk perangkat keras IoT | `sensors/` |
+| MQTT Broker (Docker) | Dokumentasi menjalankan MQTT broker sendiri menggunakan Docker | `iot/mqtt-docker/README.md` |
+| Open WebUI (AI Self-Hosted) | Konfigurasi dan environment AI | `~/digital-independence/open-webui/.env` |
+| Pendaftaran Pengguna | Atur status pendaftaran di file `signup.php`. Set ke `true` untuk membuka pendaftaran, atau `false` untuk menutup pendaftaran. | `signup.php` |
 
 ## Verifikasi Setelah Deployment
 
@@ -213,6 +231,6 @@ Script `deploy.py` akan secara otomatis melakukan kompilasi dan mengunggah firmw
 |----------|-------------------|
 | Web Server | Akses domain/IP melalui browser |
 | Database | Login ke aplikasi, periksa koneksi |
-| MQTT | Periksa log pada direktori `iot/` |
+| MQTT | Periksa log dengan perintah `dipen logs mqtt` |
 | AI Self-Hosted | Akses `http://localhost:3000` melalui browser |
 | SSL (jika digunakan) | Periksa ikon kunci di browser |
