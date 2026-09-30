@@ -7,7 +7,11 @@
     <title><?php echo isset($page_title) ? $page_title . ' - ' : ''; ?>AIoT Sok!Anak - Posyandu Digital</title>
     <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" href="../assets/fonts/inter/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../assets/css/fonts.css">
+    <link rel="stylesheet" href="../assets/vendor/fontawesome/css/all.min.css">
+
+    <script src="../tailwindcdn.js"></script>
 
     <style>
         :root {
@@ -49,11 +53,12 @@
 
         html {
             scroll-behavior: smooth;
+            font-size: 18px;
         }
 
         body {
             padding-top: 72px;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--neutral-50);
             color: var(--neutral-900);
             -webkit-font-smoothing: antialiased;
@@ -703,11 +708,6 @@
             }
         }
     </style>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
 </head>
 
 <body>

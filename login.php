@@ -115,8 +115,8 @@ $page_title = "Login - Sok!Anak";
 include 'includes/header.php';
 ?>
 
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link href="assets/vendor/aos/aos.css" rel="stylesheet">
+<script src="assets/vendor/aos/aos.js"></script>
 
 <style>
     * {

@@ -3,8 +3,8 @@ $page_title = "Pusat Bantuan - Sok!Anak";
 include 'includes/header.php';
 ?>
 
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link href="assets/vendor/aos/aos.css" rel="stylesheet">
+<script src="assets/vendor/aos/aos.js"></script>
 
 <style>
     * {
@@ -931,7 +931,7 @@ include 'includes/header.php';
                                 </div>
                                 <div>
                                     <p class="font-medium text-gray-900 text-sm">Email Support</p>
-                                    <p class="text-sm text-gray-700">sokanak@duck.com</p>
+                                    <p class="text-sm text-gray-700">sokanak@ricalnet.my.id</p>
                                 </div>
                             </div>
                         </div>
@@ -1082,7 +1082,7 @@ include 'includes/header.php';
                     <i class="fas fa-chevron-down text-gray-400"></i>
                 </button>
                 <div class="faq-answer">
-                    Anda dapat menghubungi tim support kami melalui email di sokanak@duck.com
+                    Anda dapat menghubungi tim support kami melalui email di sokanak@ricalnet.my.id
                     atau melalui koordinator posyandu wilayah Anda. Tim support kami siap membantu
                     Anda 7 hari seminggu dengan waktu respon kurang dari 5 menit.
                 </div>
@@ -1126,7 +1126,7 @@ include 'includes/header.php';
                 <h3>Email Support</h3>
                 <p class="support-desc">Kirim pertanyaan via email</p>
                 <div class="support-value">
-                    <a href="mailto:sokanak@duck.com">sokanak@duck.com</a>
+                    <a href="mailto:sokanak@ricalnet.my.id">sokanak@ricalnet.my.id</a>
                 </div>
             </div>
 
@@ -1184,7 +1184,7 @@ include 'includes/header.php';
             Jangan ragu untuk menghubungi kami. Tim support Sok!Anak siap membantu Anda dengan senang hati.
         </p>
         <div class="flex flex-wrap justify-center gap-3 sm:gap-4" data-aos="fade-up" data-aos-delay="300">
-            <a href="mailto:sokanak@duck.com" class="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-red-600 rounded-xl font-semibold 
+            <a href="mailto:sokanak@ricalnet.my.id" class="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-red-600 rounded-xl font-semibold 
                       hover:bg-red-50 transition-all duration-300 transform hover:-translate-y-1 
                       shadow-lg hover:shadow-2xl text-sm sm:text-base btn-glow">
                 <i class="fas fa-envelope"></i>

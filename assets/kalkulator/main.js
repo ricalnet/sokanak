@@ -1056,5 +1056,5 @@ Mohon tinjau kembali perhitungan ini. Jika ada kesalahan data, saya dapat member
 Terima kasih.`
     );
 
-    window.location.href = `mailto:sokanak@duck.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:sokanak@ricalnet.my.id?subject=${subject}&body=${body}`;
 }

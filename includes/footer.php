@@ -58,7 +58,7 @@
                     </li>
                     <li>
                         <i class="fas fa-envelope"></i>
-                        <a href="mailto:sokanak@duck.com">sokanak@duck.com</a>
+                        <a href="mailto:sokanak@ricalnet.my.id">sokanak@ricalnet.my.id</a>
                     </li>
                     <li>
                         <i class="fas fa-clock"></i>

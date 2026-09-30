@@ -9,9 +9,9 @@ $page_title = 'Kalkulator Status Gizi Anak';
 include 'includes/header.php';
 ?>
 
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 <link rel="stylesheet" href="assets/kalkulator/main.css">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+<script src="assets/vendor/aos/aos.js"></script>
 
 <!-- ===== HERO SECTION ===== -->
 <div class="relative overflow-hidden bg-gradient-to-br from-red-50 via-white to-red-50 rounded-2xl shadow-sm mb-10"
@@ -48,9 +48,9 @@ include 'includes/header.php';
                         class="inline-flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">
                         <i class="fas fa-lock text-green-600"></i> Data tidak disimpan &amp; aman
                     </span>
-                    <a href="https://github.com/ricalnet/sokanak" target="_blank"
+                    <a href="https://git.ricalnet.my.id/rical/sokanak" target="_blank"
                         class="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-lg transition shadow-md hover:shadow-lg">
-                        <i class="fab fa-github"></i> <span>Audit Kode</span>
+                        <i class="fab fa-forgejo"></i> <span>Audit Kode</span>
                     </a>
                 </div>
             </div>
